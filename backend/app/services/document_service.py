@@ -1,6 +1,7 @@
 import os
 from app.utils.file_parser import extract_text_from_pdf
 from app.repositories.document_repository import DocumentRepository
+from app.services.rag.rag_service import RagService
 
 UPLOAD_DIR = "uploads"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
@@ -27,5 +28,7 @@ class DocumentService:
             content=extracted_text,
             owner_id=user.id
         )
+
+        await RagService.index_document(doc)
 
         return doc
