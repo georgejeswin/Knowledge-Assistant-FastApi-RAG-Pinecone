@@ -1,8 +1,19 @@
-import pinecone
+from pinecone import Pinecone, ServerlessSpec
 from app.core.config import settings
+pc = Pinecone(api_key=settings.PINECONE_API_KEY)
 
-pinecone.init(api_key = settings.PINECONE_API_KEY)
-index = pinecone.Index("rag-index")
+if "rag-index" not in [i.name for i in pc.list_indexes()]:
+    pc.create_index(
+        name="rag-index",
+        dimension=1536,
+        metric="cosine",
+        spec=ServerlessSpec(
+            cloud="aws",
+            region="us-east-1"
+        )
+    )
+
+index = pc.Index("rag-index")
 
 class PineconeService:
     @staticmethod

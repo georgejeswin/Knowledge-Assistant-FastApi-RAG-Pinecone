@@ -28,7 +28,6 @@ class RagService:
     async def query(query_text: str):
         query_embeddings = await EmbeddingService.get_embeddings([query_text])
         results = await PineconeService.query(query_embeddings[0])
-
-        contexts = [ match["metadata"]["texts"] for match in results["matches"]]
+        contexts = [ match["metadata"]["text"] for match in results["matches"]]
 
         return contexts
