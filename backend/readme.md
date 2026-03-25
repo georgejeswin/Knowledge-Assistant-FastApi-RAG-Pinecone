@@ -1,5 +1,7 @@
 python -m uvicorn app.main:app --reload
 
+celery -A app.workers.celery_app worker --loglevel=info
+
 To Activate venv
 venv\Scripts\activate
 
