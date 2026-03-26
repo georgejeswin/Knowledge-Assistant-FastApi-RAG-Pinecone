@@ -1,7 +1,8 @@
 import os
 from app.utils.file_parser import extract_text_from_pdf
 from app.repositories.document_repository import DocumentRepository
-from app.workers.tasks import process_document
+from app.services.rag.rag_service import RagService
+# from app.workers.tasks import process_document
 
 UPLOAD_DIR = "uploads"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
@@ -27,6 +28,8 @@ class DocumentService:
         )
 
         #  Background processing
-        process_document.delay(doc.id)
+        # process_document.delay(doc.id)
+
+        await RagService.index_document(doc)
 
         return doc

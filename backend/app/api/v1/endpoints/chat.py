@@ -39,3 +39,13 @@ async def chat(
         await ChatRepository.create(db, user.id, "assistant", response_text)
 
     return StreamingResponse(event_generator(), media_type="text/plain")
+
+@router.get("/")
+async def chat(
+    db: AsyncSession = Depends(get_db),
+    user: User = Depends(get_current_user)
+):
+    # Get user messages
+    messages = await ChatRepository.get_recent(db, user.id)
+
+    return messages

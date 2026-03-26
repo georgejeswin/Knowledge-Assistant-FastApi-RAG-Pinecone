@@ -18,7 +18,7 @@ class ChatRepository:
         result = await db.execute(
             select(ChatMessage)
             .where(ChatMessage.user_id == user_id)
-            .order_by(ChatMessage.id.desc())
+            .order_by(ChatMessage.id.asc())
             .limit(limit)
         )
         return list(result.scalars())

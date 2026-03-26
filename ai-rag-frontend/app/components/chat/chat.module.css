@@ -1,0 +1,57 @@
+.container {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  background: #f5f7fb;
+}
+
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.userMessage {
+  align-self: flex-end;
+  background: #667eea;
+  color: white;
+  padding: 10px 14px;
+  border-radius: 16px 16px 4px 16px;
+  max-width: 60%;
+}
+
+.assistantMessage {
+  align-self: flex-start;
+  background: #cea426;
+  padding: 10px 14px;
+  border-radius: 16px 16px 16px 4px;
+  max-width: 60%;
+}
+
+.inputContainer {
+  display: flex;
+  padding: 12px;
+  border-top: 1px solid #ddd;
+  background: white;
+}
+
+.input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  color: black;
+}
+
+.button {
+  margin-left: 10px;
+  padding: 10px 16px;
+  border: none;
+  background: #667eea;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
