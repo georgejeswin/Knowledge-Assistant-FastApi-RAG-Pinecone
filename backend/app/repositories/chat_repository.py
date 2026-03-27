@@ -14,11 +14,11 @@ class ChatRepository:
         return msg
 
     @staticmethod
-    async def get_recent(db: AsyncSession, user_id: int, limit=10):
+    async def get_recent(db: AsyncSession, user_id: int, limit=100):
         result = await db.execute(
             select(ChatMessage)
             .where(ChatMessage.user_id == user_id)
             .order_by(ChatMessage.id.asc())
-            .limit(limit)
+            # .limit(limit)
         )
         return list(result.scalars())
